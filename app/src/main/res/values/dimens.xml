@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimen_8">8dp</dimen>
+    <dimen name="dimen_16">16dp</dimen>
+    <dimen name="dimen_24">24dp</dimen>
+    <dimen name="default_margin_x0_5">10dp</dimen>
+
+    <dimen name="default_padding">20dp</dimen>
+    <dimen name="default_padding_x0_5">10dp</dimen>
+
+    <dimen name="default_height_button">60dp</dimen>
+
+    <!-- Text size dimens -->
+    <dimen name="default_title_text_size">32sp</dimen>
+
+    <dimen name="default_item_title_text_size">18sp</dimen>
+    <dimen name="default_item_desc_text_size">14sp</dimen>
+    <dimen name="default_item_location_text_size">16sp</dimen>
+
+    <!-- Text size CardView -->
+    <dimen name="title_card_view_size">24sp</dimen>
+    <dimen name="subtitle_card_view_size">20sp</dimen>
+</resources>
