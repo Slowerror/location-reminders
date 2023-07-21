@@ -3,13 +3,19 @@ package com.slowerror.locationreminders.presentation.ui.reminder_list
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.slowerror.locationreminders.R
 import com.slowerror.locationreminders.databinding.FragmentReminderListBinding
+import com.slowerror.locationreminders.presentation.MainActivity
 import com.slowerror.locationreminders.presentation.ui.reminder_list.adapter.ReminderAdapter
 import com.slowerror.locationreminders.presentation.ui.reminder_list.listener.ReminderClickListener
 
@@ -32,7 +38,6 @@ class ReminderListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initAdapter()
-
         viewModel.reminderList.observe(viewLifecycleOwner) {
             reminderAdapter.submitList(it)
         }
@@ -42,8 +47,8 @@ class ReminderListFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        _binding = null
         super.onDestroyView()
+        _binding = null
     }
 
     private fun initAdapter() {
