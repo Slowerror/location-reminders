@@ -3,7 +3,22 @@ package com.slowerror.locationreminders.presentation.ui.reminder_list
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.slowerror.locationreminders.domain.model.Reminder
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.forEach
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.plus
 
 class ReminderListViewModel : ViewModel() {
 
@@ -29,5 +44,22 @@ class ReminderListViewModel : ViewModel() {
     }
 
 
+    private fun aba() {
+        loadFlow()
+            .filter { it > 2 }
+            .onEach {
+
+            }
+            .launchIn(viewModelScope)
+
+
+
+    }
+
+    private fun loadFlow() = flow {
+        for (i in 0..5) {
+            emit(i)
+        }
+    }
 
 }

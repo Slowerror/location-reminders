@@ -69,10 +69,20 @@ class SelectLocationFragment : Fragment() {
                 )
                 .checkPermission { isGranted ->
                     Timber.i("checkPermission: isGranted = $isGranted")
+
                     if (isGranted) {
                         Snackbar.make(view, "Разрешение получено", Snackbar.LENGTH_SHORT).show()
                     } else {
-                        Snackbar.make(view, "Разрешение отклонено", Snackbar.LENGTH_SHORT).show()
+                        Snackbar
+                            .make(
+                                view,
+                                "Откройте настройки, чтобы изменить разрешение местоположения",
+                                Snackbar.LENGTH_SHORT
+                            )
+                            .setAction("Настройки") {
+                                openSettings()
+                            }
+                            .show()
                     }
                 }
 
@@ -80,11 +90,12 @@ class SelectLocationFragment : Fragment() {
 
     }
 
-    private fun getAppSettingsIntent(): Intent {
-        return Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-            addCategory(Intent.CATEGORY_DEFAULT)
-            data = Uri.parse("package:" + (context?.packageName ?: "ghbnjmk"))
-        }
+    private fun openSettings() {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            .setData(Uri.fromParts("package", requireContext().packageName, null))
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+        startActivity(intent)
     }
 
     override fun onDestroyView() {

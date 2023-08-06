@@ -47,6 +47,11 @@ class PermissionManager private constructor(private val fragment: WeakReference<
         handlePermissionRequest()
     }
 
+    fun checkDetailedPermission(detailedCallback: (Map<Permission, Boolean>) -> Unit) {
+        this.detailedCallback = detailedCallback
+        handlePermissionRequest()
+    }
+
     private fun handlePermissionRequest() {
         fragment.get()?.let { fragment ->
             when {
@@ -85,6 +90,9 @@ class PermissionManager private constructor(private val fragment: WeakReference<
         MaterialAlertDialogBuilder(fragment.requireContext())
             .setTitle(titleDialog)
             .setMessage(rationaleDialog)
+            .setNegativeButton(fragment.getString(R.string.dialog_negative_button)) { dialog, _ ->
+                dialog.cancel()
+            }
             .setPositiveButton(fragment.getString(R.string.dialog_positive_button)) { dialog, _ ->
                 dialog.dismiss()
                 requestPermission()
@@ -107,6 +115,7 @@ class PermissionManager private constructor(private val fragment: WeakReference<
     private fun sendResultAndCleanUp(result: Map<String, Boolean>) {
         Timber.i("sendResultAndCleanUp() was called")
         callback(result.all { it.value })
+        detailedCallback(result.mapKeys { Permission.from(it.key) } )
         cleanUp()
     }
 

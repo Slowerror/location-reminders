@@ -1,12 +1,13 @@
 package com.slowerror.locationreminders.domain.repository
 
 import com.slowerror.locationreminders.domain.model.Reminder
+import kotlinx.coroutines.flow.Flow
 
 interface ReminderRepository {
 
-    fun getReminders(): List<Reminder>
+    fun getReminders(): Flow<List<Reminder>>
 
-    fun getReminderById(reminderId: Long): Reminder
+    fun getReminderById(reminderId: Long): Flow<Reminder>
 
     fun saveReminder(reminder: Reminder)
 

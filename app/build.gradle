@@ -60,7 +60,7 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
     // Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
 
     // Navigation component
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -74,6 +74,9 @@ dependencies {
     // Google maps
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.google.maps.android:maps-ktx:3.4.0'
+
+    // Google Location
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
 
     // lifecycle-ktx
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_ktx_version"
